@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Audio Plugin</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.qsapp.AudioPlugin</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>QSActions</key>
+	<dict>
+		<key>QSSelectAudioInputAction</key>
+		<dict>
+			<key>actionClass</key>
+			<string>QSAudioAction</string>
+			<key>actionSelector</key>
+			<string>selectAudioInput:</string>
+			<key>commandFormat</key>
+			<string>Use %@ for Audio Input</string>
+			<key>directTypes</key>
+			<array>
+				<string>QSAudioInputType</string>
+			</array>
+			<key>displaysResult</key>
+			<false/>
+			<key>name</key>
+			<string>Select Input Device</string>
+			<key>precedence</key>
+			<real>1.8</real>
+			<key>validatesObjects</key>
+			<false/>
+		</dict>
+		<key>QSSelectAudioOutputAction</key>
+		<dict>
+			<key>actionClass</key>
+			<string>QSAudioAction</string>
+			<key>actionSelector</key>
+			<string>selectAudioOutput:</string>
+			<key>commandFormat</key>
+			<string>Use %@ for Audio Output</string>
+			<key>directTypes</key>
+			<array>
+				<string>QSAudioOutputType</string>
+			</array>
+			<key>displaysResult</key>
+			<false/>
+			<key>name</key>
+			<string>Select Output Device</string>
+			<key>precedence</key>
+			<real>1.8</real>
+			<key>validatesObjects</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>QSPlugIn</key>
+	<dict>
+		<key>author</key>
+		<string>Rob McBroom</string>
+		<key>categories</key>
+		<array>
+			<string>Music</string>
+			<string>System</string>
+			<string>Audio</string>
+		</array>
+		<key>description</key>
+		<string>Adjust macOS audio devices</string>
+		<key>extendedDescription</key>
+		<string>&lt;h1&gt;Audio Plugin&lt;/h1&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This plugin adds your audio devices (input and output) to Quicksilver’s catalog and allows you to set which is active.&lt;/p&gt;
+&lt;h2&gt;Actions&lt;/h2&gt;
+&lt;dl&gt;
+&lt;dt&gt;Select Input Device&lt;/dt&gt;
+&lt;dd&gt;Change the active input to the device in the first pane&lt;/dd&gt;
+&lt;dt&gt;Select Output Device&lt;/dt&gt;
+&lt;dd&gt;Change the active output to the device in the first pane&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;This plug-in uses icons from the &lt;a href=&quot;https://sourceforge.net/projects/openiconlibrary/&quot;&gt;Open Icon Library&lt;/a&gt;.&lt;/p&gt;</string>
+		<key>icon</key>
+		<string>QSAudioSystem</string>
+	</dict>
+	<key>QSPresetAdditions</key>
+	<array>
+		<dict>
+			<key>ID</key>
+			<string>QSAudioDevicesPreset</string>
+			<key>enabled</key>
+			<true/>
+			<key>icon</key>
+			<string>QSAudioSystem</string>
+			<key>name</key>
+			<string>Audio Devices</string>
+			<key>source</key>
+			<string>QSAudioSource</string>
+		</dict>
+	</array>
+	<key>QSRegistration</key>
+	<dict>
+		<key>QSActionProviders</key>
+		<dict>
+			<key>QSAudioAction</key>
+			<string>QSAudioAction</string>
+		</dict>
+		<key>QSObjectHandlers</key>
+		<dict>
+			<key>QSAudioInputType</key>
+			<string>QSAudioSource</string>
+			<key>QSAudioOutputType</key>
+			<string>QSAudioSource</string>
+		</dict>
+		<key>QSObjectSources</key>
+		<dict>
+			<key>QSAudioSource</key>
+			<string>QSAudioSource</string>
+		</dict>
+		<key>QSTypeDefinitions</key>
+		<dict>
+			<key>QSAudioInputType</key>
+			<dict>
+				<key>icon</key>
+				<string>QSAudioInputDevice</string>
+				<key>name</key>
+				<string>Audio Input Devices</string>
+			</dict>
+			<key>QSAudioOutputType</key>
+			<dict>
+				<key>icon</key>
+				<string>QSAudioOutputDevice</string>
+				<key>name</key>
+				<string>Audio Output Devices</string>
+			</dict>
+			<key>QSAudioSystemType</key>
+			<dict>
+				<key>icon</key>
+				<string>QSAudioSystem</string>
+				<key>name</key>
+				<string>System Audio Output Devices</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>QSRequirements</key>
+	<dict>
+		<key>version</key>
+		<string>4012</string>
+	</dict>
+	<key>QSResourceAdditions</key>
+	<dict>
+		<key>QSAudioInputDevice</key>
+		<dict>
+			<key>bundle</key>
+			<string>com.qsapp.AudioPlugin</string>
+			<key>resource</key>
+			<string>microphone.png</string>
+		</dict>
+		<key>QSAudioOutputDevice</key>
+		<dict>
+			<key>bundle</key>
+			<string>com.qsapp.AudioPlugin</string>
+			<key>resource</key>
+			<string>speaker.png</string>
+		</dict>
+		<key>QSAudioSystem</key>
+		<dict>
+			<key>bundle</key>
+			<string>com.qsapp.AudioPlugin</string>
+			<key>resource</key>
+			<string>audio.png</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

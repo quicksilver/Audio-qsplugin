@@ -1,0 +1,15 @@
+# Audio Plugin #
+
+## Overview ##
+
+This plugin adds your audio devices (input and output) to Quicksilver’s catalog and allows you to set which is active.
+
+## Actions ##
+
+Select Input Device
+  : Change the active input to the device in the first pane
+
+Select Output Device
+  : Change the active output to the device in the first pane
+
+This plug-in uses icons from the [Open Icon Library](https://sourceforge.net/projects/openiconlibrary/).
