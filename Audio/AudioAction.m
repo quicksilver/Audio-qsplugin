@@ -7,6 +7,7 @@
 
 #import "AudioAction.h"
 #import "QSAudio.h"
+#import "audio_switch.h"
 
 @implementation QSAudioAction
 

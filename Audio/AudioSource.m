@@ -19,32 +19,13 @@
 
 - (NSArray *) objectsForEntry:(NSDictionary *)theEntry
 {
-	NSMutableArray *objects=[NSMutableArray arrayWithCapacity:1];
+	NSMutableArray *objects = [NSMutableArray arrayWithCapacity:1];
 	QSObject *newObject;
-	
-	UInt32 propertySize;
-	AudioDeviceID dev_array[64];
-	int numberOfDevices = 0;
-	ASDeviceType device_type;
-	char deviceName[256];
-	
-	AudioHardwareGetPropertyInfo(kAudioHardwarePropertyDevices, &propertySize, NULL);
-	
-	AudioHardwareGetProperty(kAudioHardwarePropertyDevices, &propertySize, dev_array);
-	numberOfDevices = (propertySize / sizeof(AudioDeviceID));
-	
-	for (int i = 0; i < numberOfDevices; ++i) {
-		AudioDeviceID dev = dev_array[i];
-		getDeviceName(dev, deviceName);
-		NSString *devName = [NSString stringWithUTF8String:deviceName];
-		NSString *devType;
-		if (isAnInputDevice(dev)) {
-			devType = QSAudioInputType;
-		} else if (isAnOutputDevice(dev)) {
-			devType = QSAudioOutputType;
-		} else {
-			devType = QSAudiosystemType;
-		}
+	NSArray *devices = (NSArray *)GetDeviceArray();
+
+	for (NSDictionary *devData in devices) {
+		NSString *devName = devData[@"deviceName"];
+		NSString *devType = devData[@"deviceType"];
 		newObject = [QSObject makeObjectWithIdentifier:[NSString stringWithFormat:@"QSAudio:%@", devName]];
 		[newObject setName:devName];
 		[newObject setObject:devName forType:devType];
