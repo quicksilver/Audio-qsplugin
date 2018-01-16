@@ -10,6 +10,7 @@
 		D434B7751FC8FFC7007AF9C3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D434B7741FC8FFC7007AF9C3 /* Cocoa.framework */; };
 		D434B77E1FC8FFC7007AF9C3 /* AudioAction.m in Sources */ = {isa = PBXBuildFile; fileRef = D434B77D1FC8FFC7007AF9C3 /* AudioAction.m */; };
 		D434B7811FC8FFC7007AF9C3 /* AudioSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D434B7801FC8FFC7007AF9C3 /* AudioSource.m */; };
+		D4B1C817200E7CF300DC81CD /* QSAudio.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B1C816200E7CF300DC81CD /* QSAudio.c */; };
 		D4DD5165200C63C400241660 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD5164200C63C400241660 /* CoreAudio.framework */; };
 		D4DD5168200C644D00241660 /* audio_switch.c in Sources */ = {isa = PBXBuildFile; fileRef = D4DD5167200C644D00241660 /* audio_switch.c */; };
 		D4DD516E200C755C00241660 /* speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD516C200C755C00241660 /* speaker.png */; };
@@ -18,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D434B7711FC8FFC7007AF9C3 /* Audio.qsplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Audio.qsplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		D434B7711FC8FFC7007AF9C3 /* Audio Plugin.qsplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Audio Plugin.qsplugin"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D434B7741FC8FFC7007AF9C3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		D434B77C1FC8FFC7007AF9C3 /* AudioAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioAction.h; sourceTree = "<group>"; };
 		D434B77D1FC8FFC7007AF9C3 /* AudioAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioAction.m; sourceTree = "<group>"; };
@@ -30,6 +31,7 @@
 		D46888941FC903AC00797047 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		D46888951FC903AC00797047 /* Quicksilver.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quicksilver.pch; sourceTree = "<group>"; };
 		D46888961FC903AC00797047 /* QSPlugIn.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = QSPlugIn.xcconfig; sourceTree = "<group>"; };
+		D4B1C816200E7CF300DC81CD /* QSAudio.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = QSAudio.c; sourceTree = "<group>"; };
 		D4DD5164200C63C400241660 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		D4DD5166200C644D00241660 /* audio_switch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = audio_switch.h; sourceTree = "<group>"; };
 		D4DD5167200C644D00241660 /* audio_switch.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = audio_switch.c; sourceTree = "<group>"; };
@@ -66,7 +68,7 @@
 		D434B7721FC8FFC7007AF9C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D434B7711FC8FFC7007AF9C3 /* Audio.qsplugin */,
+				D434B7711FC8FFC7007AF9C3 /* Audio Plugin.qsplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				D4DD5172200CE47300241660 /* QSAudio.h */,
+				D4B1C816200E7CF300DC81CD /* QSAudio.c */,
 				D4DD5166200C644D00241660 /* audio_switch.h */,
 				D4DD5167200C644D00241660 /* audio_switch.c */,
 				D434B77C1FC8FFC7007AF9C3 /* AudioAction.h */,
@@ -138,7 +141,7 @@
 			);
 			name = "Audio Plugin";
 			productName = Audio;
-			productReference = D434B7711FC8FFC7007AF9C3 /* Audio.qsplugin */;
+			productReference = D434B7711FC8FFC7007AF9C3 /* Audio Plugin.qsplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -147,7 +150,7 @@
 		D434B7681FC8FFC7007AF9C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Quicksilver;
 				TargetAttributes = {
 					D434B7701FC8FFC7007AF9C3 = {
@@ -209,6 +212,7 @@
 			files = (
 				D434B77E1FC8FFC7007AF9C3 /* AudioAction.m in Sources */,
 				D434B7811FC8FFC7007AF9C3 /* AudioSource.m in Sources */,
+				D4B1C817200E7CF300DC81CD /* QSAudio.c in Sources */,
 				D4DD5168200C644D00241660 /* audio_switch.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +224,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D46888931FC903AC00797047 /* Debug.xcconfig */;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
 			};
 			name = Debug;
 		};
@@ -237,6 +242,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Audio/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qsapp.AudioPlugin;
 			};
 			name = Debug;
 		};
@@ -247,6 +253,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Audio/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qsapp.AudioPlugin;
 			};
 			name = Release;
 		};
