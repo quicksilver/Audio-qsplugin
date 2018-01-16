@@ -26,13 +26,18 @@
 	for (NSDictionary *devData in devices) {
 		NSString *devName = devData[@"deviceName"];
 		NSString *devType = devData[@"deviceType"];
-		newObject = [QSObject makeObjectWithIdentifier:[NSString stringWithFormat:@"QSAudio:%@", devName]];
+		NSString *details = [
+			NSString stringWithFormat:@"Audio %@ Device from %@",
+			([devType isEqualToString:QSAudioInputType]) ? @"Input" : @"Output",
+			devData[@"deviceManufacturer"]
+		];
+		newObject = [QSObject makeObjectWithIdentifier:devData[@"deviceUID"]];
 		[newObject setName:devName];
+		[newObject setDetails:details];
 		[newObject setObject:devName forType:devType];
 		[newObject setPrimaryType:devType];
 		[objects addObject:newObject];
 	}
-
 	return objects;
 }
 
