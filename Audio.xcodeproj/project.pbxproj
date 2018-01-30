@@ -12,7 +12,6 @@
 		D434B7811FC8FFC7007AF9C3 /* AudioSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D434B7801FC8FFC7007AF9C3 /* AudioSource.m */; };
 		D4B1C817200E7CF300DC81CD /* QSAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B1C816200E7CF300DC81CD /* QSAudio.m */; };
 		D4DD5165200C63C400241660 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD5164200C63C400241660 /* CoreAudio.framework */; };
-		D4DD5168200C644D00241660 /* audio_switch.c in Sources */ = {isa = PBXBuildFile; fileRef = D4DD5167200C644D00241660 /* audio_switch.c */; };
 		D4DD516E200C755C00241660 /* speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD516C200C755C00241660 /* speaker.png */; };
 		D4DD516F200C755C00241660 /* microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD516D200C755C00241660 /* microphone.png */; };
 		D4DD5171200C78DF00241660 /* audio.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD5170200C78DF00241660 /* audio.png */; };
@@ -33,8 +32,6 @@
 		D46888961FC903AC00797047 /* QSPlugIn.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = QSPlugIn.xcconfig; sourceTree = "<group>"; };
 		D4B1C816200E7CF300DC81CD /* QSAudio.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSAudio.m; sourceTree = "<group>"; };
 		D4DD5164200C63C400241660 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		D4DD5166200C644D00241660 /* audio_switch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = audio_switch.h; sourceTree = "<group>"; };
-		D4DD5167200C644D00241660 /* audio_switch.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = audio_switch.c; sourceTree = "<group>"; };
 		D4DD516C200C755C00241660 /* speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker.png; sourceTree = "<group>"; };
 		D4DD516D200C755C00241660 /* microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = microphone.png; sourceTree = "<group>"; };
 		D4DD5170200C78DF00241660 /* audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio.png; sourceTree = "<group>"; };
@@ -87,8 +84,6 @@
 			children = (
 				D4DD5172200CE47300241660 /* QSAudio.h */,
 				D4B1C816200E7CF300DC81CD /* QSAudio.m */,
-				D4DD5166200C644D00241660 /* audio_switch.h */,
-				D4DD5167200C644D00241660 /* audio_switch.c */,
 				D434B77C1FC8FFC7007AF9C3 /* AudioAction.h */,
 				D434B77D1FC8FFC7007AF9C3 /* AudioAction.m */,
 				D434B77F1FC8FFC7007AF9C3 /* AudioSource.h */,
@@ -213,7 +208,6 @@
 				D434B77E1FC8FFC7007AF9C3 /* AudioAction.m in Sources */,
 				D434B7811FC8FFC7007AF9C3 /* AudioSource.m in Sources */,
 				D4B1C817200E7CF300DC81CD /* QSAudio.m in Sources */,
-				D4DD5168200C644D00241660 /* audio_switch.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
