@@ -104,12 +104,14 @@ CFArrayRef GetDeviceArray()
 		
 		// Add a dictionary for this device to the array of input devices
 		CFStringRef keys    []  = {
+			CFSTR("deviceIdentifier"),
 			CFSTR("deviceUID"),
 			CFSTR("deviceType"),
 			CFSTR("deviceName"),
 			CFSTR("deviceManufacturer")
 		};
 		CFStringRef values  []  = {
+			CFStringCreateWithFormat(NULL, NULL, CFSTR("%d"), audioDevices[i]),
 			deviceUID,
 			deviceType,
 			deviceName,
@@ -120,7 +122,7 @@ CFArrayRef GetDeviceArray()
 															  kCFAllocatorDefault,
 															  (const void **)(keys),
 															  (const void **)(values),
-															  4,
+															  5,
 															  &kCFTypeDictionaryKeyCallBacks,
 															  &kCFTypeDictionaryValueCallBacks
 															  );
