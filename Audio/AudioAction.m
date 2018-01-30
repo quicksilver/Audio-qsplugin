@@ -14,7 +14,7 @@
 
 - (QSObject *)selectAudioInput:(QSObject *)dObject
 {
-	NSNumber *devID = [dObject objectForMeta:@"deviceIdentifier"];
+	NSNumber *devID = [dObject objectForMeta:kQSAudioDeviceIdentifier];
 	AudioObjectID device = (AudioObjectID)[devID integerValue];
 	selectDevice(device, kQSAudioDeviceTypeInput);
 	return nil;
@@ -22,7 +22,7 @@
 
 - (QSObject *)selectAudioOutput:(QSObject *)dObject
 {
-	NSNumber *devID = [dObject objectForMeta:@"deviceIdentifier"];
+	NSNumber *devID = [dObject objectForMeta:kQSAudioDeviceIdentifier];
 	AudioObjectID device = (AudioObjectID)[devID integerValue];
 	selectDevice(device, kQSAudioDeviceTypeOutput);
 	return nil;

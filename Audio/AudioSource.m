@@ -24,20 +24,20 @@
 	NSArray *devices = GetDeviceArray();
 
 	for (NSDictionary *devData in devices) {
-		NSString *devName = devData[@"deviceName"];
-		NSString *devType = devData[@"deviceType"];
+		NSString *devName = devData[kQSAudioDeviceName];
+		NSString *devType = devData[kQSAudioDeviceType];
 		NSString *details = [
 			NSString stringWithFormat:@"Audio %@ Device from %@",
 			([devType isEqualToString:QSAudioInputType]) ? @"Input" : @"Output",
-			devData[@"deviceManufacturer"]
+			devData[kQSAudioDeviceManufacturer]
 		];
-		newObject = [QSObject makeObjectWithIdentifier:devData[@"deviceUID"]];
+		newObject = [QSObject makeObjectWithIdentifier:devData[kQSAudioDeviceUID]];
 		[newObject setName:devName];
 		[newObject setDetails:details];
 		[newObject setObject:devName forType:devType];
 		[newObject setPrimaryType:devType];
-		[newObject setObject:devData[@"deviceIdentifier"] forMeta:@"deviceIdentifier"];
-		[newObject setObject:devData[@"sampleRates"] forMeta:@"sampleRates"];
+		[newObject setObject:devData[kQSAudioDeviceIdentifier] forMeta:kQSAudioDeviceIdentifier];
+		[newObject setObject:devData[kQSAudioSampleRates] forMeta:kQSAudioSampleRates];
 		[objects addObject:newObject];
 	}
 	return objects;

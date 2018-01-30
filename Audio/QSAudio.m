@@ -114,12 +114,12 @@ NSArray *GetDeviceArray()
 		
 		// Add a dictionary for this device to the array of input devices
 		NSDictionary *deviceData = @{
-			@"deviceIdentifier": [NSNumber numberWithInteger:audioDevices[i]],
-			@"deviceUID": (__bridge NSString *)deviceUID,
-			@"deviceType": deviceType,
-			@"deviceName": (__bridge NSString *)deviceName,
-			@"deviceManufacturer": (__bridge NSString *)deviceManufacturer,
-			@"sampleRates": [availableSampleRates copy],
+			kQSAudioDeviceIdentifier: [NSNumber numberWithInteger:audioDevices[i]],
+			kQSAudioDeviceUID: (__bridge NSString *)deviceUID,
+			kQSAudioDeviceType: deviceType,
+			kQSAudioDeviceName: (__bridge NSString *)deviceName,
+			kQSAudioDeviceManufacturer: (__bridge NSString *)deviceManufacturer,
+			kQSAudioSampleRates: [availableSampleRates copy],
 		};
 		[audioDeviceData addObject:deviceData];
 	}

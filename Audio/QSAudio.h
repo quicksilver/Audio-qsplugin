@@ -11,6 +11,12 @@
 #define QSAudioInputType @"QSAudioInputType"
 #define QSAudioOutputType @"QSAudioOutputType"
 #define QSAudiosystemType @"QSAudioSystemType"
+#define kQSAudioDeviceIdentifier @"deviceIdentifier"
+#define kQSAudioDeviceUID @"deviceUID"
+#define kQSAudioDeviceType @"deviceType"
+#define kQSAudioDeviceName @"deviceName"
+#define kQSAudioDeviceManufacturer @"deviceManufacturer"
+#define kQSAudioSampleRates @"sampleRates"
 
 typedef enum {
 	kQSAudioDeviceTypeUnknown = 0,
