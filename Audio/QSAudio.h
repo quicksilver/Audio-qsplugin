@@ -11,6 +11,7 @@
 #define QSAudioInputType @"QSAudioInputType"
 #define QSAudioOutputType @"QSAudioOutputType"
 #define QSAudiosystemType @"QSAudioSystemType"
+#define QSAudioSampleRateType @"QSAudioSampleRateType"
 #define kQSAudioDeviceIdentifier @"deviceIdentifier"
 #define kQSAudioDeviceUID @"deviceUID"
 #define kQSAudioDeviceType @"deviceType"

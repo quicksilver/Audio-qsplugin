@@ -147,6 +147,13 @@
 				<key>name</key>
 				<string>System Audio Output Devices</string>
 			</dict>
+			<key>QSAudioSampleRateType</key>
+			<dict>
+				<key>icon</key>
+				<string>QSAudioSampleRate</string>
+				<key>name</key>
+				<string>Audio Sample Rate</string>
+			</dict>
 		</dict>
 	</dict>
 	<key>QSRequirements</key>
