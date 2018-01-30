@@ -20,3 +20,4 @@ typedef enum {
 } QSAudioDeviceType;
 
 NSArray *GetDeviceArray();
+void selectDevice(AudioObjectID newDeviceID, QSAudioDeviceType deviceType);

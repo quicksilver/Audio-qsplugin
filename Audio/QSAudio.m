@@ -136,3 +136,27 @@ NSArray *GetDeviceArray()
 	return [audioDeviceData copy];
 }
 
+void selectDevice(AudioObjectID newDeviceID, QSAudioDeviceType deviceType) {
+	UInt32 dataSize = sizeof(newDeviceID);
+	AudioObjectPropertyAddress propertyAddress = {
+		kAudioHardwarePropertyDevices,
+		kAudioObjectPropertyScopeGlobal,
+		kAudioObjectPropertyElementMaster
+	};
+	switch(deviceType) {
+		case kQSAudioDeviceTypeInput:
+			propertyAddress.mSelector = kAudioHardwarePropertyDefaultInputDevice;
+			AudioObjectSetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, dataSize, &newDeviceID);
+			break;
+		case kQSAudioDeviceTypeOutput:
+			propertyAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
+			AudioObjectSetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, dataSize, &newDeviceID);
+			break;
+		case kQSAudioDeviceTypeSystemOutput:
+			propertyAddress.mSelector = kAudioHardwarePropertyDefaultSystemOutputDevice;
+			AudioObjectSetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, dataSize, &newDeviceID);
+			break;
+		default: break;
+	}
+}
+
