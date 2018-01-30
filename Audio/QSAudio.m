@@ -59,7 +59,7 @@ NSArray *GetDeviceArray()
 		dataSize = sizeof(BitRate);
 		propertyAddress.mSelector = kAudioDevicePropertyAvailableNominalSampleRates;
 		AudioObjectGetPropertyDataSize(audioDevices[i], &propertyAddress, 0, NULL, &dataSize);
-		int rateCount = dataSize / sizeof(AudioValueRange) ;
+		UInt32 rateCount = dataSize / sizeof(AudioValueRange) ;
 		AudioValueRange sampleRates[rateCount];
 		AudioObjectGetPropertyData(audioDevices[i], &propertyAddress, 0, NULL, &dataSize, sampleRates);
 		NSMutableArray *availableSampleRates = [NSMutableArray arrayWithCapacity:rateCount];
