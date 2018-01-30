@@ -160,3 +160,22 @@ void selectDevice(AudioObjectID newDeviceID, QSAudioDeviceType deviceType) {
 	}
 }
 
+void setSampleRate(AudioObjectID deviceID, Float32 newRate) {
+	AudioValueRange data;
+	AudioObjectPropertyAddress propertyAddress = {
+		kAudioDevicePropertyNominalSampleRate,
+		kAudioObjectPropertyScopeOutput,
+		kAudioObjectPropertyElementMaster
+	};
+	CFStringRef BitRate = NULL;
+	UInt32 dataSize = sizeof(BitRate);
+	AudioObjectGetPropertyData(deviceID, &propertyAddress, 0, NULL, &dataSize, &data);
+	if (data.mMinimum == newRate) {
+		// no change in sample rate
+		return;
+	}
+	dataSize = sizeof(AudioValueRange);
+	data.mMinimum = newRate;
+	data.mMaximum = newRate;
+	AudioObjectSetPropertyData(deviceID, &propertyAddress, 0, NULL, dataSize, &data);
+}
