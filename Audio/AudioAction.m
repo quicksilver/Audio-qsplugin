@@ -7,7 +7,6 @@
 
 #import "AudioAction.h"
 #import "QSAudio.h"
-#import "audio_switch.h"
 
 @implementation QSAudioAction
 
@@ -15,17 +14,17 @@
 
 - (QSObject *)selectAudioInput:(QSObject *)dObject
 {
-	NSString *devName = [dObject objectForType:QSAudioInputType];
-	AudioDeviceID device = getRequestedDeviceID((char *)[devName UTF8String], kAudioTypeInput);
-	setDevice(device, kAudioTypeInput);
+	NSNumber *devID = [dObject objectForMeta:@"deviceIdentifier"];
+	AudioObjectID device = (AudioObjectID)[devID integerValue];
+	selectDevice(device, kQSAudioDeviceTypeInput);
 	return nil;
 }
 
 - (QSObject *)selectAudioOutput:(QSObject *)dObject
 {
-	NSString *devName = [dObject objectForType:QSAudioOutputType];
-	AudioDeviceID device = getRequestedDeviceID((char *)[devName UTF8String], kAudioTypeOutput);
-	setDevice(device, kAudioTypeOutput);
+	NSNumber *devID = [dObject objectForMeta:@"deviceIdentifier"];
+	AudioObjectID device = (AudioObjectID)[devID integerValue];
+	selectDevice(device, kQSAudioDeviceTypeOutput);
 	return nil;
 }
 

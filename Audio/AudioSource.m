@@ -36,6 +36,8 @@
 		[newObject setDetails:details];
 		[newObject setObject:devName forType:devType];
 		[newObject setPrimaryType:devType];
+		[newObject setObject:devData[@"deviceIdentifier"] forMeta:@"deviceIdentifier"];
+		[newObject setObject:devData[@"sampleRates"] forMeta:@"sampleRates"];
 		[objects addObject:newObject];
 	}
 	return objects;
