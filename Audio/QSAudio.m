@@ -60,17 +60,11 @@ NSArray *GetDeviceArray()
 		propertyAddress.mSelector = kAudioDevicePropertyAvailableNominalSampleRates;
 		AudioObjectGetPropertyDataSize(audioDevices[i], &propertyAddress, 0, NULL, &dataSize);
 		int rateCount = dataSize / sizeof(AudioValueRange) ;
-		
-		printf("Available %d Sample Rates\n", rateCount) ;
-		
 		AudioValueRange sampleRates[rateCount];
-		
 		AudioObjectGetPropertyData(audioDevices[i], &propertyAddress, 0, NULL, &dataSize, sampleRates);
-		
 		NSMutableArray *availableSampleRates = [NSMutableArray arrayWithCapacity:rateCount];
 		for(UInt32 i = 0 ; i < rateCount ; ++i)
 		{
-			printf("Available Sample Rate value : %f\n", sampleRates[i].mMinimum);
 			[availableSampleRates addObject:[NSNumber numberWithFloat:sampleRates[i].mMinimum]];
 		}
 		
