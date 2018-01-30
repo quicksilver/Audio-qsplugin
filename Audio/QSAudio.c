@@ -23,9 +23,9 @@ CFArrayRef GetDeviceArray()
 		return NULL;
 	}
 	
-	UInt32 deviceCount = (UInt32)(dataSize / sizeof(AudioDeviceID));
+	UInt32 deviceCount = (UInt32)(dataSize / sizeof(AudioObjectID));
 	
-	AudioDeviceID *audioDevices = (AudioDeviceID *)(malloc(dataSize));
+	AudioObjectID *audioDevices = (AudioObjectID *)(malloc(dataSize));
 	if (NULL == audioDevices) {
 		fputs("Unable to allocate memory", stderr);
 		return NULL;
@@ -34,14 +34,14 @@ CFArrayRef GetDeviceArray()
 	status = AudioObjectGetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &dataSize, audioDevices);
 	if (kAudioHardwareNoError != status) {
 		fprintf(stderr, "AudioObjectGetPropertyData (kAudioHardwarePropertyDevices) failed: %i\n", status);
-		free(audioDevices), audioDevices = NULL;
+		free(audioDevices); audioDevices = NULL;
 		return NULL;
 	}
 	
 	CFMutableArrayRef inputDeviceArray = CFArrayCreateMutable(kCFAllocatorDefault, deviceCount, &kCFTypeArrayCallBacks);
 	if (NULL == inputDeviceArray) {
 		fputs("CFArrayCreateMutable failed", stderr);
-		free(audioDevices), audioDevices = NULL;
+		free(audioDevices); audioDevices = NULL;
 		return NULL;
 	}
 	
@@ -100,7 +100,7 @@ CFArrayRef GetDeviceArray()
 		} else {
 			deviceType = CFSTR("QSAudioInputType");
 		}
-		free(bufferList), bufferList = NULL;
+		free(bufferList); bufferList = NULL;
 		
 		// Add a dictionary for this device to the array of input devices
 		CFStringRef keys    []  = {
@@ -129,14 +129,14 @@ CFArrayRef GetDeviceArray()
 		
 		CFArrayAppendValue(inputDeviceArray, deviceDictionary);
 		
-		CFRelease(deviceDictionary), deviceDictionary = NULL;
+		CFRelease(deviceDictionary); deviceDictionary = NULL;
 	}
 	
-	free(audioDevices), audioDevices = NULL;
+	free(audioDevices); audioDevices = NULL;
 	
 	// Return a non-mutable copy of the array
 	CFArrayRef copy = CFArrayCreateCopy(kCFAllocatorDefault, inputDeviceArray);
-	CFRelease(inputDeviceArray), inputDeviceArray = NULL;
+	CFRelease(inputDeviceArray); inputDeviceArray = NULL;
 	
 	return copy;
 }
