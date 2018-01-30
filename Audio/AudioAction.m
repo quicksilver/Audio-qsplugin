@@ -10,6 +10,21 @@
 
 @implementation QSAudioAction
 
+#pragma mark Helpers
+
+QSObject *sampleRateQSObject(NSNumber *rate) {
+	NSString *ident = [NSString stringWithFormat:@"QSAudioSampleRate:%@", rate];
+	NSString *rateDisplayName = [NSString stringWithFormat:
+		@"%.1f kHz",
+		[rate floatValue] / 1000
+	];
+	QSObject *rateObject = [QSObject makeObjectWithIdentifier:ident];
+	[rateObject setObject:rate forType:QSAudioSampleRateType];
+	[rateObject setPrimaryType:QSAudioSampleRateType];
+	[rateObject setName:rateDisplayName];
+	return rateObject;
+}
+
 #pragma mark Action Methods
 
 - (QSObject *)selectAudioInput:(QSObject *)dObject
