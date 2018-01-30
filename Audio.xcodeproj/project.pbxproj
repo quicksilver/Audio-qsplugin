@@ -10,6 +10,7 @@
 		D434B7751FC8FFC7007AF9C3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D434B7741FC8FFC7007AF9C3 /* Cocoa.framework */; };
 		D434B77E1FC8FFC7007AF9C3 /* AudioAction.m in Sources */ = {isa = PBXBuildFile; fileRef = D434B77D1FC8FFC7007AF9C3 /* AudioAction.m */; };
 		D434B7811FC8FFC7007AF9C3 /* AudioSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D434B7801FC8FFC7007AF9C3 /* AudioSource.m */; };
+		D46049EF20209AB0000D1C3F /* sample-rate.png in Resources */ = {isa = PBXBuildFile; fileRef = D46049EE20209AB0000D1C3F /* sample-rate.png */; };
 		D4B1C817200E7CF300DC81CD /* QSAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B1C816200E7CF300DC81CD /* QSAudio.m */; };
 		D4DD5165200C63C400241660 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DD5164200C63C400241660 /* CoreAudio.framework */; };
 		D4DD516E200C755C00241660 /* speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = D4DD516C200C755C00241660 /* speaker.png */; };
@@ -24,6 +25,7 @@
 		D434B77D1FC8FFC7007AF9C3 /* AudioAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioAction.m; sourceTree = "<group>"; };
 		D434B77F1FC8FFC7007AF9C3 /* AudioSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioSource.h; sourceTree = "<group>"; };
 		D434B7801FC8FFC7007AF9C3 /* AudioSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioSource.m; sourceTree = "<group>"; };
+		D46049EE20209AB0000D1C3F /* sample-rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sample-rate.png"; sourceTree = "<group>"; };
 		D46888911FC903AC00797047 /* Developer.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Developer.xcconfig; sourceTree = "<group>"; };
 		D46888921FC903AC00797047 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		D46888931FC903AC00797047 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				D4DD5170200C78DF00241660 /* audio.png */,
 				D4DD516D200C755C00241660 /* microphone.png */,
+				D46049EE20209AB0000D1C3F /* sample-rate.png */,
 				D4DD516C200C755C00241660 /* speaker.png */,
 			);
 			path = Resources;
@@ -176,6 +179,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D46049EF20209AB0000D1C3F /* sample-rate.png in Resources */,
 				D4DD5171200C78DF00241660 /* audio.png in Resources */,
 				D4DD516F200C755C00241660 /* microphone.png in Resources */,
 				D4DD516E200C755C00241660 /* speaker.png in Resources */,

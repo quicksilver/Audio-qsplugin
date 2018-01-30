@@ -177,6 +177,13 @@
 			<key>resource</key>
 			<string>audio.png</string>
 		</dict>
+		<key>QSAudioSampleRate</key>
+		<dict>
+			<key>bundle</key>
+			<string>com.qsapp.AudioPlugin</string>
+			<key>resource</key>
+			<string>sample-rate.png</string>
+		</dict>
 	</dict>
 </dict>
 </plist>
