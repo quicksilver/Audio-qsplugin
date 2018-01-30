@@ -6,9 +6,17 @@
 //
 
 #include <CoreAudio/CoreAudio.h>
+#include <Cocoa/Cocoa.h>
 
 #define QSAudioInputType @"QSAudioInputType"
 #define QSAudioOutputType @"QSAudioOutputType"
 #define QSAudiosystemType @"QSAudioSystemType"
 
-CFArrayRef GetDeviceArray();
+typedef enum {
+	kQSAudioDeviceTypeUnknown = 0,
+	kQSAudioDeviceTypeInput   = 1,
+	kQSAudioDeviceTypeOutput  = 2,
+	kQSAudioDeviceTypeSystemOutput = 3
+} QSAudioDeviceType;
+
+NSArray *GetDeviceArray();

@@ -4,11 +4,13 @@
 //
 //  Created by Rob McBroom on 2018/01/16.
 //  Borrowing heavily from https://stackoverflow.com/questions/4575408/audioobjectgetpropertydata-to-get-a-list-of-input-devices
+// and https://developer.apple.com/library/content/samplecode/HALExamples/Listings/ConfigDefaultOutput_c.html
 //
+// TODO https://stackoverflow.com/questions/26012341/os-x-respond-to-new-audio-device
 
 #include "QSAudio.h"
 
-CFArrayRef GetDeviceArray()
+NSArray *GetDeviceArray()
 {
 	AudioObjectPropertyAddress propertyAddress = {
 		kAudioHardwarePropertyDevices,
@@ -38,14 +40,8 @@ CFArrayRef GetDeviceArray()
 		return NULL;
 	}
 	
-	CFMutableArrayRef inputDeviceArray = CFArrayCreateMutable(kCFAllocatorDefault, deviceCount, &kCFTypeArrayCallBacks);
-	if (NULL == inputDeviceArray) {
-		fputs("CFArrayCreateMutable failed", stderr);
-		free(audioDevices); audioDevices = NULL;
-		return NULL;
-	}
-	
-	// Iterate through all the devices and determine which are input-capable
+	// collect data about each device
+	NSMutableArray *audioDeviceData = [NSMutableArray array];
 	propertyAddress.mScope = kAudioDevicePropertyScopeInput;
 	for (UInt32 i = 0; i < deviceCount; ++i) {
 		// Query device UID
@@ -56,6 +52,26 @@ CFArrayRef GetDeviceArray()
 		if (kAudioHardwareNoError != status) {
 			fprintf(stderr, "AudioObjectGetPropertyData (kAudioDevicePropertyDeviceUID) failed: %i\n", status);
 			continue;
+		}
+		
+		// Query device bitrate
+		CFStringRef BitRate = NULL;
+		dataSize = sizeof(BitRate);
+		propertyAddress.mSelector = kAudioDevicePropertyAvailableNominalSampleRates;
+		AudioObjectGetPropertyDataSize(audioDevices[i], &propertyAddress, 0, NULL, &dataSize);
+		int rateCount = dataSize / sizeof(AudioValueRange) ;
+		
+		printf("Available %d Sample Rates\n", rateCount) ;
+		
+		AudioValueRange sampleRates[rateCount];
+		
+		AudioObjectGetPropertyData(audioDevices[i], &propertyAddress, 0, NULL, &dataSize, sampleRates);
+		
+		NSMutableArray *availableSampleRates = [NSMutableArray arrayWithCapacity:rateCount];
+		for(UInt32 i = 0 ; i < rateCount ; ++i)
+		{
+			printf("Available Sample Rate value : %f\n", sampleRates[i].mMinimum);
+			[availableSampleRates addObject:[NSNumber numberWithFloat:sampleRates[i].mMinimum]];
 		}
 		
 		// Query device name
@@ -94,49 +110,29 @@ CFArrayRef GetDeviceArray()
 		}
 		
 		status = AudioObjectGetPropertyData(audioDevices[i], &propertyAddress, 0, NULL, &dataSize, bufferList);
-		CFStringRef deviceType = NULL;
+		NSString *deviceType;
 		if (kAudioHardwareNoError != status || 0 == bufferList->mNumberBuffers) {
-			deviceType = CFSTR("QSAudioOutputType");
+			deviceType = @"QSAudioOutputType";
 		} else {
-			deviceType = CFSTR("QSAudioInputType");
+			deviceType = @"QSAudioInputType";
 		}
 		free(bufferList); bufferList = NULL;
 		
 		// Add a dictionary for this device to the array of input devices
-		CFStringRef keys    []  = {
-			CFSTR("deviceIdentifier"),
-			CFSTR("deviceUID"),
-			CFSTR("deviceType"),
-			CFSTR("deviceName"),
-			CFSTR("deviceManufacturer")
+		NSDictionary *deviceData = @{
+			@"deviceIdentifier": [NSNumber numberWithInteger:audioDevices[i]],
+			@"deviceUID": (__bridge NSString *)deviceUID,
+			@"deviceType": deviceType,
+			@"deviceName": (__bridge NSString *)deviceName,
+			@"deviceManufacturer": (__bridge NSString *)deviceManufacturer,
+			@"sampleRates": [availableSampleRates copy],
 		};
-		CFStringRef values  []  = {
-			CFStringCreateWithFormat(NULL, NULL, CFSTR("%d"), audioDevices[i]),
-			deviceUID,
-			deviceType,
-			deviceName,
-			deviceManufacturer
-		};
-		
-		CFDictionaryRef deviceDictionary = CFDictionaryCreate(
-															  kCFAllocatorDefault,
-															  (const void **)(keys),
-															  (const void **)(values),
-															  5,
-															  &kCFTypeDictionaryKeyCallBacks,
-															  &kCFTypeDictionaryValueCallBacks
-															  );
-		
-		CFArrayAppendValue(inputDeviceArray, deviceDictionary);
-		
-		CFRelease(deviceDictionary); deviceDictionary = NULL;
+		[audioDeviceData addObject:deviceData];
 	}
 	
 	free(audioDevices); audioDevices = NULL;
 	
-	// Return a non-mutable copy of the array
-	CFArrayRef copy = CFArrayCreateCopy(kCFAllocatorDefault, inputDeviceArray);
-	CFRelease(inputDeviceArray); inputDeviceArray = NULL;
-	
-	return copy;
+	// return an immutable copy of the array
+	return [audioDeviceData copy];
 }
+

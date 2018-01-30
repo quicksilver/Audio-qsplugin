@@ -17,11 +17,11 @@
 	return NO;
 }
 
-- (NSArray *) objectsForEntry:(NSDictionary *)theEntry
+- (NSArray *)objectsForEntry:(NSDictionary *)theEntry
 {
 	NSMutableArray *objects = [NSMutableArray arrayWithCapacity:1];
 	QSObject *newObject;
-	NSArray *devices = (NSArray *)GetDeviceArray();
+	NSArray *devices = GetDeviceArray();
 
 	for (NSDictionary *devData in devices) {
 		NSString *devName = devData[@"deviceName"];
