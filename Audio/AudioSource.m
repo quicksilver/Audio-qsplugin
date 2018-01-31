@@ -8,13 +8,46 @@
 #import "AudioSource.h"
 #import "QSAudio.h"
 
+OSStatus QSAudioDeviceListener(AudioObjectID inObjectID, UInt32 inNumberAddresses, const AudioObjectPropertyAddress inAddresses[], void* inClientData)
+{
+	QSCatalogEntry *audioEntry = [QSLib entryForID:@"QSAudioDevicesPreset"];
+	[audioEntry scanForced:YES];
+	return noErr;
+}
+
 @implementation QSAudioSource
+
+- (instancetype)init
+{
+	self = [super init];
+	if (self) {
+		AudioObjectPropertyAddress propertyAddress = {
+			kAudioHardwarePropertyDevices,
+			kAudioObjectPropertyScopeGlobal,
+			kAudioObjectPropertyElementMaster
+		};
+		AudioObjectAddPropertyListener(kAudioObjectSystemObject, &propertyAddress, QSAudioDeviceListener, NULL);
+	}
+	return self;
+}
+
+- (void)dealloc
+{
+	AudioObjectPropertyAddress propertyAddress = {
+		kAudioHardwarePropertyDevices,
+		kAudioObjectPropertyScopeGlobal,
+		kAudioObjectPropertyElementMaster
+	};
+	AudioObjectRemovePropertyListener(kAudioObjectSystemObject, &propertyAddress, QSAudioDeviceListener, NULL);
+	[super dealloc];
+}
 
 #pragma mark Catalog Entry Methods
 
 - (BOOL)indexIsValidFromDate:(NSDate *)indexDate forEntry:(NSDictionary *)theEntry
 {
-	return NO;
+	// always ignore scheduled indexing - QSAudioDeviceListener should keep it fresh
+	return YES;
 }
 
 - (NSArray *)objectsForEntry:(NSDictionary *)theEntry
