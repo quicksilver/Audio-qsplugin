@@ -48,7 +48,11 @@ QSObject *sampleRateQSObject(NSNumber *rate) {
 	NSNumber *devID = [dObject objectForMeta:kQSAudioDeviceIdentifier];
 	AudioObjectID device = (AudioObjectID)[devID integerValue];
 	NSNumber *sampleRate = [iObject objectForType:QSAudioSampleRateType];
-	setSampleRate(device, [sampleRate floatValue]);
+	if ([[dObject objectForMeta:kQSAudioSampleRates] containsObject:sampleRate]) {
+		setSampleRate(device, [sampleRate floatValue]);
+	} else {
+		NSLog(@"sample rate %@ is not supported by %@", sampleRate, dObject);
+	}
 	return nil;
 }
 
