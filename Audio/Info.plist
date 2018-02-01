@@ -157,7 +157,7 @@
 				<key>name</key>
 				<string>Audio Device Connected</string>
 				<key>provider</key>
-				<string>QSAudioSource</string>
+				<string>QSAudioEvents</string>
 				<key>type</key>
 				<string>Hardware</string>
 			</dict>
@@ -170,7 +170,7 @@
 				<key>name</key>
 				<string>Audio Device Removed</string>
 				<key>provider</key>
-				<string>QSAudioSource</string>
+				<string>QSAudioEvents</string>
 				<key>type</key>
 				<string>Hardware</string>
 			</dict>
