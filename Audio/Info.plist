@@ -146,6 +146,35 @@
 			<key>QSAudioSource</key>
 			<string>QSAudioSource</string>
 		</dict>
+		<key>QSTriggerEvents</key>
+		<dict>
+			<key>QSAudioDeviceAddedEvent</key>
+			<dict>
+				<key>allowMatching</key>
+				<true/>
+				<key>icon</key>
+				<string>QSAudioSystem</string>
+				<key>name</key>
+				<string>Audio Device Connected</string>
+				<key>provider</key>
+				<string>QSAudioSource</string>
+				<key>type</key>
+				<string>Hardware</string>
+			</dict>
+			<key>QSAudioDeviceRemovedEvent</key>
+			<dict>
+				<key>allowMatching</key>
+				<true/>
+				<key>icon</key>
+				<string>QSAudioSystem</string>
+				<key>name</key>
+				<string>Audio Device Removed</string>
+				<key>provider</key>
+				<string>QSAudioSource</string>
+				<key>type</key>
+				<string>Hardware</string>
+			</dict>
+		</dict>
 		<key>QSTypeDefinitions</key>
 		<dict>
 			<key>QSAudioInputType</key>
