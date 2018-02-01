@@ -19,16 +19,20 @@ OSStatus QSAudioDeviceListener(AudioObjectID inObjectID, UInt32 inNumberAddresse
 		sleep(0.1);
 	}
 	NSMutableSet *after = [NSMutableSet setWithArray:[audioEntry contents]];
-	NSDictionary *info;
+	NSDictionary *info = nil;
 	if ([after count] > [before count]) {
 		// device added
 		[after minusSet:before];
-		info = @{@"object": [after anyObject]};
+		if ([after count]) {
+			info = @{@"object": [after anyObject]};
+		}
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"QSEventNotification" object:@"QSAudioDeviceAddedEvent" userInfo:info];
 	} else {
 		// device removed
 		[before minusSet:after];
-		info = @{@"object": [before anyObject]};
+		if ([before count]) {
+			info = @{@"object": [before anyObject]};
+		}
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"QSEventNotification" object:@"QSAudioDeviceRemovedEvent" userInfo:info];
 	}
 	return noErr;
