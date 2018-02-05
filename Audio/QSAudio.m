@@ -173,3 +173,37 @@ void setSampleRate(AudioObjectID deviceID, Float32 newRate) {
 	data.mMaximum = newRate;
 	AudioObjectSetPropertyData(deviceID, &propertyAddress, 0, NULL, dataSize, &data);
 }
+
+NSString *getCurrentDeviceUID(QSAudioDeviceType deviceType) {
+	AudioDeviceID audioDevice;
+	UInt32 dataSize = sizeof(audioDevice);
+	AudioObjectPropertyAddress propertyAddress = {
+		kAudioHardwarePropertyDevices,
+		kAudioObjectPropertyScopeGlobal,
+		kAudioObjectPropertyElementMaster
+	};
+	switch(deviceType) {
+		case kQSAudioDeviceTypeInput:
+			propertyAddress.mSelector = kAudioHardwarePropertyDefaultInputDevice;
+			AudioObjectGetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &dataSize, &audioDevice);
+			break;
+		case kQSAudioDeviceTypeOutput:
+			propertyAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
+			AudioObjectGetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &dataSize, &audioDevice);
+			break;
+		case kQSAudioDeviceTypeSystemOutput:
+			propertyAddress.mSelector = kAudioHardwarePropertyDefaultSystemOutputDevice;
+			AudioObjectGetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &dataSize, &audioDevice);
+			break;
+		default:
+			return nil;
+	}
+	CFStringRef deviceUID = NULL;
+	dataSize = sizeof(deviceUID);
+	propertyAddress.mSelector = kAudioDevicePropertyDeviceUID;
+	OSStatus status = AudioObjectGetPropertyData(audioDevice, &propertyAddress, 0, NULL, &dataSize, &deviceUID);
+	if (kAudioHardwareNoError != status) {
+		fprintf(stderr, "AudioObjectGetPropertyData (kAudioDevicePropertyDeviceUID) failed: %i\n", status);
+	}
+	return (__bridge NSString *)deviceUID;
+}

@@ -29,3 +29,4 @@ typedef enum {
 NSArray *getDeviceArray();
 void selectDevice(AudioObjectID newDeviceID, QSAudioDeviceType deviceType);
 void setSampleRate(AudioObjectID deviceID, Float32 newRate);
+NSString *getCurrentDeviceUID(QSAudioDeviceType deviceType);

@@ -128,6 +128,31 @@
 			<key>QSAudioSource</key>
 			<string>QSAudioSource</string>
 		</dict>
+		<key>QSProxies</key>
+		<dict>
+			<key>QSAudioCurrentOutputProxy</key>
+			<dict>
+				<key>name</key>
+				<string>Current Audio Output Device</string>
+				<key>providerClass</key>
+				<string>QSAudioSource</string>
+				<key>types</key>
+				<array>
+					<string>QSAudioOutputType</string>
+				</array>
+			</dict>
+			<key>QSAudioCurrentInputProxy</key>
+			<dict>
+				<key>name</key>
+				<string>Current Audio Input Device</string>
+				<key>providerClass</key>
+				<string>QSAudioSource</string>
+				<key>types</key>
+				<array>
+					<string>QSAudioInputType</string>
+				</array>
+			</dict>
+		</dict>
 		<key>QSTriggerEvents</key>
 		<dict>
 			<key>QSAudioDeviceAddedEvent</key>

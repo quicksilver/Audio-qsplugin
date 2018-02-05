@@ -104,4 +104,31 @@ OSStatus QSAudioDeviceListener(AudioObjectID inObjectID, UInt32 inNumberAddresse
 	// make sure devices are rescanned on every launch, not read from disk
 	return NO;
 }
+
+#pragma mark Proxy Object Support
+
+- (QSObject *)resolveProxyObject:(QSProxyObject *)proxy
+{
+	NSString *ident = [proxy identifier];
+	if ([ident isEqualToString:@"QSAudioCurrentOutputProxy"]) {
+		NSString *deviceUID = getCurrentDeviceUID(kQSAudioDeviceTypeOutput);
+		QSObject *resolved = [QSLib objectWithIdentifier:deviceUID];
+		return resolved;
+	}
+	if ([ident isEqualToString:@"QSAudioCurrentInputProxy"]) {
+		NSString *deviceUID = getCurrentDeviceUID(kQSAudioDeviceTypeInput);
+		QSObject *resolved = [QSLib objectWithIdentifier:deviceUID];
+		return resolved;
+	}
+	return nil;
+}
+
+- (NSString *)detailsOfObject:(QSObject *)object
+{
+	if ([object isProxyObject]) {
+		return [[object resolvedObject] displayName];
+	}
+	return nil;
+}
+
 @end

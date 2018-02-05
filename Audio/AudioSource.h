@@ -5,7 +5,5 @@
 //  Created by Rob McBroom
 //
 
-@interface QSAudioSource : QSObjectSource
-{
-}
+@interface QSAudioSource : QSObjectSource <QSProxyObjectProvider>
 @end
