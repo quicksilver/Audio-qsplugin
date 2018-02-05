@@ -22,6 +22,27 @@
 	<string>QSAudioAction</string>
 	<key>QSActions</key>
 	<dict>
+		<key>QSMatchTrackSampleRateAction</key>
+		<dict>
+			<key>actionClass</key>
+			<string>QSAudioAction</string>
+			<key>actionSelector</key>
+			<string>matchTrackSampleRate:</string>
+			<key>commandFormat</key>
+			<string>Match Output Sample Rate to %@</string>
+			<key>directTypes</key>
+			<array>
+				<string>com.apple.itunes.track</string>
+			</array>
+			<key>displaysResult</key>
+			<false/>
+			<key>icon</key>
+			<string>QSAudioSampleRate</string>
+			<key>name</key>
+			<string>Set Output Sample Rate to Match</string>
+			<key>validatesObjects</key>
+			<false/>
+		</dict>
 		<key>QSSelectAudioInputAction</key>
 		<dict>
 			<key>actionClass</key>
@@ -64,27 +85,6 @@
 			<key>validatesObjects</key>
 			<false/>
 		</dict>
-		<key>QSMatchTrackSampleRateAction</key>
-		<dict>
-			<key>actionClass</key>
-			<string>QSAudioAction</string>
-			<key>actionSelector</key>
-			<string>matchTrackSampleRate:</string>
-			<key>commandFormat</key>
-			<string>Match Output Sample Rate to %@</string>
-			<key>directTypes</key>
-			<array>
-				<string>com.apple.itunes.track</string>
-			</array>
-			<key>displaysResult</key>
-			<false/>
-			<key>icon</key>
-			<string>QSAudioSampleRate</string>
-			<key>name</key>
-			<string>Set Output Sample Rate to Match</string>
-			<key>validatesObjects</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>QSLoadImmediately</key>
 	<true/>
@@ -111,7 +111,7 @@
 &lt;dt&gt;Select Output Device&lt;/dt&gt;
 &lt;dd&gt;Change the active output to the device in the first pane&lt;/dd&gt;
 &lt;/dl&gt;
-&lt;p&gt;This plug-in uses icons from the &lt;a href=&quot;https://sourceforge.net/projects/openiconlibrary/&quot;&gt;Open Icon Library&lt;/a&gt;.&lt;/p&gt;</string>
+&lt;p&gt;This plug-in uses icons from the &lt;a href="https://sourceforge.net/projects/openiconlibrary/"&gt;Open Icon Library&lt;/a&gt;.&lt;/p&gt;</string>
 		<key>icon</key>
 		<string>QSAudioSystem</string>
 	</dict>
@@ -151,17 +151,6 @@
 		</dict>
 		<key>QSProxies</key>
 		<dict>
-			<key>QSAudioCurrentOutputProxy</key>
-			<dict>
-				<key>name</key>
-				<string>Current Audio Output Device</string>
-				<key>providerClass</key>
-				<string>QSAudioSource</string>
-				<key>types</key>
-				<array>
-					<string>QSAudioOutputType</string>
-				</array>
-			</dict>
 			<key>QSAudioCurrentInputProxy</key>
 			<dict>
 				<key>name</key>
@@ -171,6 +160,17 @@
 				<key>types</key>
 				<array>
 					<string>QSAudioInputType</string>
+				</array>
+			</dict>
+			<key>QSAudioCurrentOutputProxy</key>
+			<dict>
+				<key>name</key>
+				<string>Current Audio Output Device</string>
+				<key>providerClass</key>
+				<string>QSAudioSource</string>
+				<key>types</key>
+				<array>
+					<string>QSAudioOutputType</string>
 				</array>
 			</dict>
 		</dict>
@@ -219,19 +219,19 @@
 				<key>name</key>
 				<string>Audio Output Devices</string>
 			</dict>
-			<key>QSAudioSystemType</key>
-			<dict>
-				<key>icon</key>
-				<string>QSAudioSystem</string>
-				<key>name</key>
-				<string>System Audio Output Devices</string>
-			</dict>
 			<key>QSAudioSampleRateType</key>
 			<dict>
 				<key>icon</key>
 				<string>QSAudioSampleRate</string>
 				<key>name</key>
 				<string>Audio Sample Rate</string>
+			</dict>
+			<key>QSAudioSystemType</key>
+			<dict>
+				<key>icon</key>
+				<string>QSAudioSystem</string>
+				<key>name</key>
+				<string>System Audio Output Devices</string>
 			</dict>
 		</dict>
 	</dict>
@@ -256,19 +256,19 @@
 			<key>resource</key>
 			<string>speaker.png</string>
 		</dict>
-		<key>QSAudioSystem</key>
-		<dict>
-			<key>bundle</key>
-			<string>com.qsapp.AudioPlugin</string>
-			<key>resource</key>
-			<string>audio.png</string>
-		</dict>
 		<key>QSAudioSampleRate</key>
 		<dict>
 			<key>bundle</key>
 			<string>com.qsapp.AudioPlugin</string>
 			<key>resource</key>
 			<string>sample-rate.png</string>
+		</dict>
+		<key>QSAudioSystem</key>
+		<dict>
+			<key>bundle</key>
+			<string>com.qsapp.AudioPlugin</string>
+			<key>resource</key>
+			<string>audio.png</string>
 		</dict>
 	</dict>
 </dict>
