@@ -110,6 +110,26 @@ QSObject *sampleRateQSObject(NSNumber *rate) {
 	return nil;
 }
 
+- (QSObject *)matchTrackSampleRate:(QSObject *)dObject
+{
+	NSString *deviceUID = getCurrentDeviceUID(kQSAudioDeviceTypeOutput);
+	QSObject *outputDevice = [QSLib objectWithIdentifier:deviceUID];
+	NSDictionary *trackInfo = [dObject objectForType:@"com.apple.itunes.track"];
+	NSNumber *sampleRate = [trackInfo objectForKey:@"Sample Rate"];
+	NSLog(@"sample rate: %@", sampleRate);
+	if (!sampleRate) {
+		return nil;
+	}
+	NSNumber *devID = [outputDevice objectForMeta:kQSAudioDeviceIdentifier];
+	AudioObjectID device = (AudioObjectID)[devID integerValue];
+	if ([[outputDevice objectForMeta:kQSAudioSampleRates] containsObject:sampleRate]) {
+		setSampleRate(device, [sampleRate floatValue]);
+	} else {
+		NSLog(@"sample rate %@ is not supported by %@", sampleRate, outputDevice);
+	}
+	return nil;
+}
+
 #pragma mark Quicksilver Validation
 
 // return an array of objects that are allowed in the third pane

@@ -64,6 +64,27 @@
 			<key>validatesObjects</key>
 			<false/>
 		</dict>
+		<key>QSMatchTrackSampleRateAction</key>
+		<dict>
+			<key>actionClass</key>
+			<string>QSAudioAction</string>
+			<key>actionSelector</key>
+			<string>matchTrackSampleRate:</string>
+			<key>commandFormat</key>
+			<string>Match Output Sample Rate to %@</string>
+			<key>directTypes</key>
+			<array>
+				<string>com.apple.itunes.track</string>
+			</array>
+			<key>displaysResult</key>
+			<false/>
+			<key>icon</key>
+			<string>QSAudioSampleRate</string>
+			<key>name</key>
+			<string>Set Output Sample Rate to Match</string>
+			<key>validatesObjects</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>QSLoadImmediately</key>
 	<true/>
