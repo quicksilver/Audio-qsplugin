@@ -110,32 +110,11 @@ QSObject *sampleRateQSObject(NSNumber *rate) {
 	return nil;
 }
 
-- (QSObject *)setAudioPropertyFor:(QSObject *)dObject sampleRate:(QSObject *)iObject
-{
-	NSNumber *devID = [dObject objectForMeta:kQSAudioDeviceIdentifier];
-	AudioObjectID device = (AudioObjectID)[devID integerValue];
-	NSNumber *sampleRate = [iObject objectForType:QSAudioSampleRateType];
-	if ([[dObject objectForMeta:kQSAudioSampleRates] containsObject:sampleRate]) {
-		setSampleRate(device, [sampleRate floatValue]);
-	} else {
-		NSLog(@"sample rate %@ is not supported by %@", sampleRate, dObject);
-	}
-	return nil;
-}
-
 #pragma mark Quicksilver Validation
 
 // return an array of objects that are allowed in the third pane
 - (NSArray *)validIndirectObjectsForAction:(NSString *)action directObject:(QSObject *)dObject
 {
-	if ([action isEqualToString:@"QSSetAudioSampleRateAction"]) {
-		NSMutableArray *rateOptions = [NSMutableArray array];
-		for (NSNumber *sampleRate in [dObject objectForMeta:kQSAudioSampleRates]) {
-			QSObject *rateObj = sampleRateQSObject(sampleRate);
-			[rateOptions addObject:rateObj];
-		}
-		return [rateOptions copy];
-	}
 	return nil;
 }
 

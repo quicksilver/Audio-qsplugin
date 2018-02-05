@@ -64,28 +64,6 @@
 			<key>validatesObjects</key>
 			<false/>
 		</dict>
-		<key>QSSetAudioSampleRateAction</key>
-		<dict>
-			<key>actionClass</key>
-			<string>QSAudioAction</string>
-			<key>actionSelector</key>
-			<string>setAudioPropertyFor:sampleRate:</string>
-			<key>commandFormat</key>
-			<string>Set sample rate for %@ to %@</string>
-			<key>directTypes</key>
-			<array>
-				<string>QSAudioOutputType</string>
-				<string>QSAudioInputType</string>
-			</array>
-			<key>displaysResult</key>
-			<false/>
-			<key>name</key>
-			<string>Set Sample Rate…</string>
-			<key>precedence</key>
-			<real>0.4</real>
-			<key>validatesObjects</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>QSLoadImmediately</key>
 	<true/>
