@@ -5,7 +5,5 @@
 //  Created by Rob McBroom
 //
 
-@interface QSAudioAction : QSAction
-{
-}
+@interface QSAudioAction : QSActionProvider
 @end

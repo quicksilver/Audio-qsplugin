@@ -18,6 +18,8 @@
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSPrincipalClass</key>
+	<string>QSAudioAction</string>
 	<key>QSActions</key>
 	<dict>
 		<key>QSSelectAudioInputAction</key>
@@ -85,6 +87,8 @@
 			<false/>
 		</dict>
 	</dict>
+	<key>QSLoadImmediately</key>
+	<true/>
 	<key>QSPlugIn</key>
 	<dict>
 		<key>author</key>
