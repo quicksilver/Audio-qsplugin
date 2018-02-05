@@ -7,7 +7,6 @@
 
 #import "AudioAction.h"
 #import "QSAudio.h"
-#import <objc/objc-runtime.h>
 
 NSString *actionIDForSampleRate(NSNumber *sampleRate) {
 	return [NSString stringWithFormat:@"QSSampleRateAction%@", sampleRate];
@@ -40,38 +39,29 @@ NSString *actionIDForSampleRate(NSNumber *sampleRate) {
 			setSampleRate(device, [sampleRate floatValue]);
 			return nil;
 		};
-		IMP sampleRateAction = imp_implementationWithBlock(actionBlock);
+		NSString *actionID = actionIDForSampleRate(sampleRate);
+		NSString *actionName = [NSString stringWithFormat:
+			@"Set Sample Rate to %g kHz",
+			[sampleRate floatValue] / 1000
+		];
+		NSString *commandFormat = [
+			@"Set Sample Rate for %@ "
+			stringByAppendingFormat:@"to %g kHz", [sampleRate floatValue] / 1000
+		];
 		NSString *selName = [NSString stringWithFormat:@"setSampleRate%@:", sampleRate];
-		SEL actionSelector = NSSelectorFromString(selName);
-		BOOL actionAvailable = class_addMethod(
-			[self class],
-			actionSelector,
-			sampleRateAction,
-			"@@:@"
-		);
-		if (actionAvailable)
-		{
-			NSString *actionID = actionIDForSampleRate(sampleRate);
-			NSString *actionName = [NSString stringWithFormat:
-				@"Set Sample Rate to %g kHz",
-				[sampleRate floatValue] / 1000
-			];
-			NSString *commandFormat = [
-				@"Set Sample Rate for %@ "
-				stringByAppendingFormat:@"to %g kHz", [sampleRate floatValue] / 1000
-			];
-			QSAction *newAction = [[QSAction alloc] init];
-			[newAction setIdentifier:actionID];
-			[newAction setProvider:[self alloc]];
-			[newAction setBundle:[NSBundle bundleWithIdentifier:@"com.qsapp.AudioPlugin"]];
-			[newAction setName:actionName];
-			[newAction setCommandFormat:commandFormat];
-			[newAction setIcon:[QSResourceManager imageNamed:@"QSAudioSampleRate"]];
-			[newAction setIconLoaded:YES];
-			[newAction setAction:actionSelector];
-			[newAction setPrecedence:0.5];
-			[newAction setDirectTypes:@[QSAudioInputType, QSAudioOutputType]];
-			[newAction setValidatesObjects:YES];
+		QSAction *newAction = [[QSAction alloc] init];
+		[newAction setIdentifier:actionID];
+		[newAction setProvider:[self alloc]];
+		[newAction setBundle:[NSBundle bundleWithIdentifier:@"com.qsapp.AudioPlugin"]];
+		[newAction setName:actionName];
+		[newAction setCommandFormat:commandFormat];
+		[newAction setIcon:[QSResourceManager imageNamed:@"QSAudioSampleRate"]];
+		[newAction setIconLoaded:YES];
+		[newAction setPrecedence:0.5];
+		[newAction setDirectTypes:@[QSAudioInputType, QSAudioOutputType]];
+		[newAction setValidatesObjects:YES];
+		BOOL actionDefined = [newAction setActionUisngBlock:actionBlock selectorName:selName];
+		if (actionDefined) {
 			[QSExec addAction:newAction];
 		}
 	}
