@@ -10,7 +10,7 @@
 
 #include "QSAudio.h"
 
-NSArray *GetDeviceArray()
+NSArray *getDeviceArray()
 {
 	AudioObjectPropertyAddress propertyAddress = {
 		kAudioHardwarePropertyDevices,

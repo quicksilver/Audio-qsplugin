@@ -77,7 +77,7 @@ OSStatus QSAudioDeviceListener(AudioObjectID inObjectID, UInt32 inNumberAddresse
 {
 	NSMutableArray *objects = [NSMutableArray arrayWithCapacity:1];
 	QSObject *newObject;
-	NSArray *devices = GetDeviceArray();
+	NSArray *devices = getDeviceArray();
 
 	for (NSDictionary *devData in devices) {
 		NSString *devName = devData[kQSAudioDeviceName];

@@ -26,6 +26,6 @@ typedef enum {
 	kQSAudioDeviceTypeSystemOutput = 3
 } QSAudioDeviceType;
 
-NSArray *GetDeviceArray();
+NSArray *getDeviceArray();
 void selectDevice(AudioObjectID newDeviceID, QSAudioDeviceType deviceType);
 void setSampleRate(AudioObjectID deviceID, Float32 newRate);
