@@ -140,18 +140,17 @@ void selectDevice(AudioObjectID newDeviceID, QSAudioDeviceType deviceType) {
 	switch(deviceType) {
 		case kQSAudioDeviceTypeInput:
 			propertyAddress.mSelector = kAudioHardwarePropertyDefaultInputDevice;
-			AudioObjectSetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, dataSize, &newDeviceID);
 			break;
 		case kQSAudioDeviceTypeOutput:
 			propertyAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
-			AudioObjectSetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, dataSize, &newDeviceID);
 			break;
 		case kQSAudioDeviceTypeSystemOutput:
 			propertyAddress.mSelector = kAudioHardwarePropertyDefaultSystemOutputDevice;
-			AudioObjectSetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, dataSize, &newDeviceID);
 			break;
-		default: break;
+		default:
+			return;
 	}
+	AudioObjectSetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, dataSize, &newDeviceID);
 }
 
 void setSampleRate(AudioObjectID deviceID, Float32 newRate) {
@@ -184,19 +183,17 @@ NSString *getCurrentDeviceUID(QSAudioDeviceType deviceType) {
 	switch(deviceType) {
 		case kQSAudioDeviceTypeInput:
 			propertyAddress.mSelector = kAudioHardwarePropertyDefaultInputDevice;
-			AudioObjectGetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &dataSize, &audioDevice);
 			break;
 		case kQSAudioDeviceTypeOutput:
 			propertyAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
-			AudioObjectGetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &dataSize, &audioDevice);
 			break;
 		case kQSAudioDeviceTypeSystemOutput:
 			propertyAddress.mSelector = kAudioHardwarePropertyDefaultSystemOutputDevice;
-			AudioObjectGetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &dataSize, &audioDevice);
 			break;
 		default:
 			return nil;
 	}
+	AudioObjectGetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &dataSize, &audioDevice);
 	CFStringRef deviceUID = NULL;
 	dataSize = sizeof(deviceUID);
 	propertyAddress.mSelector = kAudioDevicePropertyDeviceUID;
