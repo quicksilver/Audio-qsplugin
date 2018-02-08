@@ -161,8 +161,7 @@ void setSampleRate(AudioObjectID deviceID, Float32 newRate) {
 		kAudioObjectPropertyScopeOutput,
 		kAudioObjectPropertyElementMaster
 	};
-	CFStringRef BitRate = NULL;
-	UInt32 dataSize = sizeof(BitRate);
+	UInt32 dataSize = sizeof(CFStringRef);
 	AudioObjectGetPropertyData(deviceID, &propertyAddress, 0, NULL, &dataSize, &data);
 	if (data.mMinimum == newRate) {
 		// no change in sample rate
