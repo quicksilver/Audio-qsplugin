@@ -131,7 +131,8 @@ QSObject *sampleRateQSObject(NSNumber *rate) {
 - (NSArray *)validActionsForDirectObject:(QSObject *)dObject indirectObject:(QSObject *)iObject
 {
 	NSMutableArray *allowedSampleRates = [NSMutableArray array];
-	for (NSNumber *sampleRate in [dObject objectForMeta:kQSAudioSampleRates]) {
+	QSObject *audioDevice = [dObject resolvedObject];
+	for (NSNumber *sampleRate in [audioDevice objectForMeta:kQSAudioSampleRates]) {
 		NSString *actionID = actionIDForSampleRate(sampleRate);
 		[allowedSampleRates addObject:actionID];
 	}
