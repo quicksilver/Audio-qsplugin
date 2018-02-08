@@ -51,8 +51,8 @@ NSString *actionIDForSampleRate(NSNumber *sampleRate) {
 		NSString *selName = [NSString stringWithFormat:@"setSampleRate%@:", sampleRate];
 		QSAction *newAction = [[QSAction alloc] init];
 		[newAction setIdentifier:actionID];
-		[newAction setProvider:[self alloc]];
-		[newAction setBundle:[NSBundle bundleWithIdentifier:@"com.qsapp.AudioPlugin"]];
+		[newAction setProvider:[QSAudioAction provider]];
+		[newAction setBundle:[NSBundle bundleForClass:[QSAudioAction class]]];
 		[newAction setName:actionName];
 		[newAction setCommandFormat:commandFormat];
 		[newAction setIcon:[QSResourceManager imageNamed:@"QSAudioSampleRate"]];
