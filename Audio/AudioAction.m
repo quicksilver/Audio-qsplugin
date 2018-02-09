@@ -8,8 +8,10 @@
 #import "AudioAction.h"
 #import "QSAudio.h"
 
+#define QSSampleRateActionPrefix @"QSSampleRateAction"
+
 NSString *actionIDForSampleRate(NSNumber *sampleRate) {
-	return [NSString stringWithFormat:@"QSSampleRateAction%@", sampleRate];
+	return [NSString stringWithFormat:@"%@%@", QSSampleRateActionPrefix, sampleRate];
 }
 
 @implementation QSAudioAction
