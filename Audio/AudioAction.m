@@ -51,17 +51,15 @@ NSString *actionIDForSampleRate(NSNumber *sampleRate) {
 			stringByAppendingFormat:@"to %g kHz", [sampleRate floatValue] / 1000
 		];
 		NSString *selName = [NSString stringWithFormat:@"setSampleRate%@:", sampleRate];
-		QSAction *newAction = [[QSAction alloc] init];
-		[newAction setIdentifier:actionID];
-		[newAction setProvider:[QSAudioAction provider]];
-		[newAction setBundle:[NSBundle bundleForClass:[QSAudioAction class]]];
-		[newAction setName:actionName];
-		[newAction setCommandFormat:commandFormat];
-		[newAction setIcon:[QSResourceManager imageNamed:@"QSAudioSampleRate"]];
-		[newAction setIconLoaded:YES];
-		[newAction setPrecedence:0.5];
-		[newAction setDirectTypes:@[QSAudioInputType, QSAudioOutputType]];
-		[newAction setValidatesObjects:YES];
+		NSDictionary *actionParams = @{
+			kActionProvider: [QSAudioAction provider],
+			kActionName: actionName,
+			kActionCommandFormat: commandFormat,
+			kActionPrecedence: @0.5F,
+			kActionDirectTypes: @[QSAudioInputType, QSAudioOutputType],
+			kActionValidatesObjects: @YES,
+		};
+		QSAction *newAction = [QSAction actionWithDictionary:actionParams identifier:actionID bundle:[NSBundle bundleForClass:[QSAudioAction class]]];
 		BOOL actionDefined = [newAction setActionUisngBlock:actionBlock selectorName:selName];
 		if (actionDefined) {
 			[QSExec addAction:newAction];
