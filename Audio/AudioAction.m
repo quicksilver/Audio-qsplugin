@@ -122,11 +122,13 @@ QSObject *sampleRateQSObject(NSNumber *rate) {
 	return nil;
 }
 
-#pragma mark Quicksilver Validation
+#pragma mark Action Provider Methods
 
-// return an array of objects that are allowed in the third pane
-- (NSArray *)validIndirectObjectsForAction:(NSString *)action directObject:(QSObject *)dObject
+- (NSImage *)iconForAction:(NSString *)action
 {
+	if ([action hasPrefix:QSSampleRateActionPrefix]) {
+		return [QSResourceManager imageNamed:@"QSAudioSampleRate"];
+	}
 	return nil;
 }
 
