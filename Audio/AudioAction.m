@@ -106,8 +106,7 @@ QSObject *sampleRateQSObject(NSNumber *rate) {
 	QSObject *outputDevice = [QSLib objectWithIdentifier:deviceUID];
 	NSDictionary *trackInfo = [dObject objectForType:@"com.apple.itunes.track"];
 	NSNumber *sampleRate = [trackInfo objectForKey:@"Sample Rate"];
-	NSLog(@"sample rate: %@", sampleRate);
-	if (!sampleRate) {
+	if (![sampleRate boolValue]) {
 		return nil;
 	}
 	NSNumber *devID = [outputDevice objectForMeta:kQSAudioDeviceIdentifier];
