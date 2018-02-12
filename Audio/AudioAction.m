@@ -60,7 +60,7 @@ NSString *actionIDForSampleRate(NSNumber *sampleRate) {
 			kActionValidatesObjects: @YES,
 		};
 		QSAction *newAction = [QSAction actionWithDictionary:actionParams identifier:actionID bundle:[NSBundle bundleForClass:[QSAudioAction class]]];
-		BOOL actionDefined = [newAction setActionUisngBlock:actionBlock selectorName:selName];
+		BOOL actionDefined = [newAction setActionUsingBlock:actionBlock selectorName:selName];
 		if (actionDefined) {
 			[QSExec addAction:newAction];
 		}
