@@ -38,7 +38,16 @@ NSString *actionIDForSampleRate(NSNumber *sampleRate) {
 				NSLog(@"sample rate %@ is not supported by %@", sampleRate, dObject);
 				return nil;
 			}
-			setSampleRate(device, [sampleRate floatValue]);
+			BOOL changed = setSampleRate(device, [sampleRate floatValue]);
+			if (changed) {
+				NSString *message = [NSString stringWithFormat:@"Sample rate for %@ has been set to %g kHz", [dObject displayName], [sampleRate floatValue] / 1000];
+ 				QSShowNotifierWithAttributes(@{
+					QSNotifierType: @"QSNotification",
+					QSNotifierIcon: [QSResourceManager imageNamed:@"QSAudioSampleRate"],
+					QSNotifierTitle: NSLocalizedString(@"Sample Rate Changed", nil),
+					QSNotifierText: message,
+				});
+			}
 			return nil;
 		};
 		NSString *actionID = actionIDForSampleRate(sampleRate);
@@ -112,7 +121,16 @@ QSObject *sampleRateQSObject(NSNumber *rate) {
 	NSNumber *devID = [outputDevice objectForMeta:kQSAudioDeviceIdentifier];
 	AudioObjectID device = (AudioObjectID)[devID integerValue];
 	if ([[outputDevice objectForMeta:kQSAudioSampleRates] containsObject:sampleRate]) {
-		setSampleRate(device, [sampleRate floatValue]);
+		BOOL changed = setSampleRate(device, [sampleRate floatValue]);
+		if (changed) {
+			NSString *message = [NSString stringWithFormat:@"Sample rate for %@ has been set to %g kHz", [outputDevice displayName], [sampleRate floatValue] / 1000];
+			QSShowNotifierWithAttributes(@{
+				QSNotifierType: @"QSNotification",
+				QSNotifierIcon: [QSResourceManager imageNamed:@"QSAudioSampleRate"],
+				QSNotifierTitle: NSLocalizedString(@"Sample Rate Changed", nil),
+				QSNotifierText: message,
+			});
+		}
 	} else {
 		NSLog(@"sample rate %@ is not supported by %@", sampleRate, outputDevice);
 	}

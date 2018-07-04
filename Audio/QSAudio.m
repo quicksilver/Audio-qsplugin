@@ -153,7 +153,7 @@ void selectDevice(AudioObjectID newDeviceID, QSAudioDeviceType deviceType) {
 	AudioObjectSetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, dataSize, &newDeviceID);
 }
 
-void setSampleRate(AudioObjectID deviceID, Float32 newRate) {
+BOOL setSampleRate(AudioObjectID deviceID, Float32 newRate) {
 	AudioValueRange data;
 	AudioObjectPropertyAddress propertyAddress = {
 		kAudioDevicePropertyNominalSampleRate,
@@ -164,12 +164,13 @@ void setSampleRate(AudioObjectID deviceID, Float32 newRate) {
 	AudioObjectGetPropertyData(deviceID, &propertyAddress, 0, NULL, &dataSize, &data);
 	if (data.mMinimum == newRate) {
 		// no change in sample rate
-		return;
+		return NO;
 	}
 	dataSize = sizeof(AudioValueRange);
 	data.mMinimum = newRate;
 	data.mMaximum = newRate;
 	AudioObjectSetPropertyData(deviceID, &propertyAddress, 0, NULL, dataSize, &data);
+	return YES;
 }
 
 NSString *getCurrentDeviceUID(QSAudioDeviceType deviceType) {
