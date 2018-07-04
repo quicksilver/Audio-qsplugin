@@ -103,14 +103,31 @@
 		<key>extendedDescription</key>
 		<string>&lt;h1&gt;Audio Plugin&lt;/h1&gt;
 &lt;h2&gt;Overview&lt;/h2&gt;
-&lt;p&gt;This plugin adds your audio devices (input and output) to Quicksilver’s catalog and allows you to set which is active.&lt;/p&gt;
+&lt;p&gt;This plugin adds your audio devices (input and output) to Quicksilver’s catalog and allows you to set which is active. You can also adjust the sample rate of any discovered device, which saves you from having to do it manually in the Audio MIDI Setup utility.&lt;/p&gt;
+&lt;p&gt;Using this plugin along with the iTunes and Event Triggers plugins, you can automatically adjust the sample rate of your output device to match the currently playing track.&lt;/p&gt;
 &lt;h2&gt;Actions&lt;/h2&gt;
 &lt;dl&gt;
 &lt;dt&gt;Select Input Device&lt;/dt&gt;
 &lt;dd&gt;Change the active input to the device in the first pane&lt;/dd&gt;
 &lt;dt&gt;Select Output Device&lt;/dt&gt;
 &lt;dd&gt;Change the active output to the device in the first pane&lt;/dd&gt;
+&lt;dt&gt;Set Sample Rate to ??? kHz&lt;/dt&gt;
+&lt;dd&gt;With an audio device selected in the first pane, the sample rate can be set to a specific value. The available sample rate actions will vary, depending on the rates supported by the device.&lt;/dd&gt;
+&lt;dt&gt;Set Output Sample Rate to Match&lt;/dt&gt;
+&lt;dd&gt;Set the sample rate of the current output device to match the audio track selected in the first pane.&lt;/dd&gt;
 &lt;/dl&gt;
+&lt;p&gt;This is mainly intended to be used in a trigger with the “Currently Playing Track” proxy object. If the target sample rate is not supported by the device, nothing happens.&lt;/p&gt;
+&lt;h2&gt;Automatically Adjusting Sample Rate&lt;/h2&gt;
+&lt;p&gt;To make sure the sample rate of your output device always matches the sample rate of the music you’re listening to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install the iTunes plugin&lt;/li&gt;
+&lt;li&gt;Install the Event Triggers plugin&lt;/li&gt;
+&lt;li&gt;In Quicksilver’s Triggers preferences, create a new Event Trigger&lt;/li&gt;
+&lt;li&gt;Select “Event Trigger Object” in the first pane&lt;/li&gt;
+&lt;li&gt;Select the “Set Output Sample Rate to Match” action in the second pane&lt;/li&gt;
+&lt;li&gt;Save the trigger&lt;/li&gt;
+&lt;li&gt;In the trigger’s settings, choose the “iTunes Track Changed” event&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;This plug-in uses icons from the &lt;a href="https://sourceforge.net/projects/openiconlibrary/"&gt;Open Icon Library&lt;/a&gt;.&lt;/p&gt;</string>
 		<key>icon</key>
 		<string>QSAudioSystem</string>

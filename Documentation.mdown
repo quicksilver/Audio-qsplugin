@@ -2,7 +2,9 @@
 
 ## Overview ##
 
-This plugin adds your audio devices (input and output) to Quicksilver’s catalog and allows you to set which is active.
+This plugin adds your audio devices (input and output) to Quicksilver’s catalog and allows you to set which is active. You can also adjust the sample rate of any discovered device, which saves you from having to do it manually in the Audio MIDI Setup utility.
+
+Using this plugin along with the iTunes and Event Triggers plugins, you can automatically adjust the sample rate of your output device to match the currently playing track.
 
 ## Actions ##
 
@@ -11,5 +13,25 @@ Select Input Device
 
 Select Output Device
   : Change the active output to the device in the first pane
+
+Set Sample Rate to ??? kHz
+  : With an audio device selected in the first pane, the sample rate can be set to a specific value. The available sample rate actions will vary, depending on the rates supported by the device.
+
+Set Output Sample Rate to Match
+  : Set the sample rate of the current output device to match the audio track selected in the first pane.
+  
+  This is mainly intended to be used in a trigger with the “Currently Playing Track” proxy object. If the target sample rate is not supported by the device, nothing happens.
+
+## Automatically Adjusting Sample Rate ##
+
+To make sure the sample rate of your output device always matches the sample rate of the music you’re listening to:
+
+  1. Install the iTunes plugin
+  2. Install the Event Triggers plugin
+  3. In Quicksilver’s Triggers preferences, create a new Event Trigger
+  4. Select “Event Trigger Object” in the first pane
+  5. Select the “Set Output Sample Rate to Match” action in the second pane
+  6. Save the trigger
+  7. In the trigger’s settings, choose the “iTunes Track Changed” event
 
 This plug-in uses icons from the [Open Icon Library](https://sourceforge.net/projects/openiconlibrary/).
