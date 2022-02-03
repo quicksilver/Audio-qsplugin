@@ -128,7 +128,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D434B7851FC8FFC7007AF9C3 /* Build configuration list for PBXNativeTarget "Audio Plugin" */;
 			buildPhases = (
-				D434B76C1FC8FFC7007AF9C3 /* ShellScript */,
 				D434B76D1FC8FFC7007AF9C3 /* Sources */,
 				D434B76E1FC8FFC7007AF9C3 /* Frameworks */,
 				D434B76F1FC8FFC7007AF9C3 /* Resources */,
@@ -187,22 +186,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		D434B76C1FC8FFC7007AF9C3 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "\"$QS_BUILD_ROOT/Tools/bltrversion\"";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D434B76D1FC8FFC7007AF9C3 /* Sources */ = {
